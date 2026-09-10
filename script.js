@@ -387,7 +387,130 @@ function calculateSalary() {
 
   const weeklyPayOption =
     document.getElementById("weeklyPay").value;
+    const weeksPerMonth = 365 / 7 / 12;
 
+  // 하루 8시간까지만 소정근로시간
+  const regularDailyHours = Math.min(hours, 8);
+
+  // 주 소정근로시간 최대 40시간
+  const weeklyRegularHours =
+    Math.min(regularDailyHours * days, 40);
+
+  // 화면 표시용 실제 주 근로시간
+  const weeklyWorkHours =
+    hours * days;
+
+  // 주휴시간
+  let weeklyHolidayHours = 0;
+
+  if (weeklyRegularHours >= 15) {
+    weeklyHolidayHours =
+      weeklyRegularHours >= 40
+        ? 8
+        : (weeklyRegularHours / 40) * 8;
+  }
+
+  const basicMonthlyHours =
+    weeklyRegularHours * weeksPerMonth;
+
+  const monthlyHolidayHours =
+    weeklyHolidayHours * weeksPerMonth;
+
+  let hourlyWage = 0;
+  let weeklyHolidayPay = 0;
+  let overtimePay = 0;
+  let nightExtraPay = 0;
+  let grossSalary = 0;
+
+  // ==========================================
+  // 연장·야간수당이 월 급여에 이미 포함된 경우
+  // ==========================================
+  if (extraPayIncluded === "yes") {
+
+    let wageHours = basicMonthlyHours;
+
+    if (weeklyPayOption === "yes") {
+      wageHours += monthlyHolidayHours;
+    }
+
+    // 월 급여 안에 들어있는 연장/야간수당까지 고려하여
+    // 통상시급을 역산한 예상값
+    const includedWeightedHours =
+      wageHours +
+      (overtime * 1.5) +
+      (night * 0.5);
+
+    hourlyWage =
+      includedWeightedHours > 0
+        ? basicSalary / includedWeightedHours
+        : 0;
+
+    overtimePay =
+      hourlyWage *
+      overtime *
+      1.5;
+
+    nightExtraPay =
+      hourlyWage *
+      night *
+      0.5;
+
+    if (weeklyPayOption === "no") {
+      weeklyHolidayPay =
+        hourlyWage *
+        monthlyHolidayHours;
+    }
+
+    // 이미 월 급여에 수당이 포함되어 있으므로
+    // 연장·야간수당을 다시 더하지 않음
+    grossSalary =
+      basicSalary +
+      weeklyHolidayPay;
+
+  }
+
+  // ==========================================
+  // 연장·야간수당이 월 급여와 별도 지급되는 경우
+  // ==========================================
+  else {
+
+    if (weeklyPayOption === "yes") {
+
+      const paidMonthlyHours =
+        basicMonthlyHours +
+        monthlyHolidayHours;
+
+      hourlyWage =
+        basicSalary /
+        paidMonthlyHours;
+
+    } else {
+
+      hourlyWage =
+        basicSalary /
+        basicMonthlyHours;
+
+      weeklyHolidayPay =
+        hourlyWage *
+        monthlyHolidayHours;
+    }
+
+    overtimePay =
+      hourlyWage *
+      overtime *
+      1.5;
+
+    nightExtraPay =
+      hourlyWage *
+      night *
+      0.5;
+
+    grossSalary =
+      basicSalary +
+      weeklyHolidayPay +
+      overtimePay +
+      nightExtraPay;
+  }
   const overtime =
     Number(
       document.getElementById("overtime").value
