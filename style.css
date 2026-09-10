@@ -859,39 +859,19 @@ button:active {
     font-size: 13px;
   }
 }
-
-/* 모바일 입력창 최적화 */
+/* 아이폰 날짜 입력창 수정 */
 @media (max-width: 600px) {
-
-  input,
-  select {
-    min-height: 52px;
+  #startDate,
+  #lastWorkDate {
+    display: block;
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+    min-width: 0;
     height: 52px;
+    margin: 0;
     padding: 0 14px;
-    font-size: 16px;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
   }
-
- input[type="date"] {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  min-height: 52px;
-  height: 52px;
-  padding: 0 14px;
-  font-size: 16px;
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  appearance: none;
-}
-}
-/* 아이폰 퇴직금 날짜 입력칸 너비 수정 */
-#startDate,
-#lastWorkDate {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
 }
