@@ -67,7 +67,7 @@
     </p>
 
 
-    <label>월 기본급 (세전)</label>
+   <label>월 급여 (세전)</label>
 
     <input
       type="text"
@@ -77,9 +77,9 @@
       oninput="formatSalary(this)"
     >
 
-    <small class="input-help">
-      연장·야간근무수당을 제외한 기본 월급을 입력해주세요.
-    </small>
+   <small class="input-help">
+  매월 받는 세전 월 급여를 입력해주세요.
+</small>
 
 
     <label>비과세 급여</label>
@@ -126,7 +126,16 @@
       <option value="yes">포함</option>
       <option value="no">미포함</option>
     </select>
+<label>연장·야간수당이 월 급여에 포함되어 있나요?</label>
 
+<select id="extraPayIncluded">
+  <option value="yes">포함되어 있음</option>
+  <option value="no">별도로 지급됨</option>
+</select>
+
+<small class="input-help">
+  월 급여 3,000,000원 안에 연장·야간수당이 이미 포함되어 있다면 "포함되어 있음"을 선택해주세요.
+</small>
 
     <label>월 연장근무시간</label>
 
