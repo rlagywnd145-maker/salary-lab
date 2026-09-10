@@ -775,7 +775,7 @@ function calculateSalary() {
     <div class="result-grid">
 
       <div class="result-card">
-        <span>예상 시급</span>
+        <span>예상 환산 시급</span>
         <strong>${money(hourlyWage)}원</strong>
       </div>
 
