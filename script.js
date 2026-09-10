@@ -1535,3 +1535,25 @@ function calculateExtraPay() {
     </div>
   `;
 }
+// 날짜 8자리 입력 시 YYYY-MM-DD 형식으로 자동 변환
+function formatDateInput(input) {
+  let value = input.value.replace(/\D/g, "").slice(0, 8);
+
+  if (value.length >= 5) {
+    value = value.slice(0, 4) + "-" + value.slice(4);
+  }
+
+  if (value.length >= 8) {
+    value = value.slice(0, 7) + "-" + value.slice(7);
+  }
+
+  input.value = value;
+}
+
+document.getElementById("startDate").addEventListener("input", function () {
+  formatDateInput(this);
+});
+
+document.getElementById("lastWorkDate").addEventListener("input", function () {
+  formatDateInput(this);
+});
