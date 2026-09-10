@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>월급연구소 | 월급·퇴직금·주휴수당 계산기</title>
+
+  <meta
+    name="description"
+    content="월급 실수령액, 퇴직금, 주휴수당, 연장·야간수당을 간편하게 계산해보세요."
+  >
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- 상단 메뉴 -->
+  <nav class="top-nav">
+    <div class="nav-inner">
+
+      <div class="site-logo">
+        💰 월급연구소
+      </div>
+
+      <div class="nav-links">
+        <a href="#salary-section">월급 분석</a>
+        <a href="#retirement-section">퇴직금</a>
+        <a href="#weekly-section">주휴수당</a>
+        <a href="#extra-section">연장·야간</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       월급 분석기
+  ========================== -->
+
+  <div class="calculator" id="salary-section">
+
+    <h1>💸 내 월급 분석기</h1>
+
+    <p class="description">
+      기본급과 근무조건을 입력하면
+      예상 총급여와 실수령액을 계산해드립니다.
+    </p>
+
+
+    <label>월 기본급 (세전)</label>
+
+    <input
+      type="text"
+      id="salary"
+      placeholder="예: 3,000,000"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+    >
+
+    <small class="input-help">
+      연장·야간근무수당을 제외한 기본 월급을 입력해주세요.
+    </small>
+
+
+    <label>비과세 급여</label>
+
+    <input
+      type="text"
+      id="nonTaxablePay"
+      placeholder="예: 200,000"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+      value="0"
+    >
+
+    <small class="input-help">
+      식대 등 비과세로 지급되는 금액이 있다면 입력해주세요.
+    </small>
+
+
+    <label>하루 근무시간</label>
+
+    <input
+      type="number"
+      id="hours"
+      placeholder="예: 8"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>주 근무일수</label>
+
+    <input
+      type="number"
+      id="days"
+      placeholder="예: 5"
+      min="1"
+      max="7"
+    >
+
+
+    <label>기본급에 주휴수당 포함 여부</label>
+
+    <select id="weeklyPay">
+      <option value="yes">포함</option>
+      <option value="no">미포함</option>
+    </select>
+
+
+    <label>월 연장근무시간</label>
+
+    <input
+      type="number"
+      id="overtime"
+      placeholder="예: 10"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>월 야간근무시간</label>
+
+    <input
+      type="number"
+      id="night"
+      placeholder="예: 5"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>공제대상 가족 수</label>
+
+    <select id="familyCount">
+      <option value="1">1명</option>
+      <option value="2">2명</option>
+      <option value="3">3명</option>
+      <option value="4">4명</option>
+      <option value="5">5명</option>
+      <option value="6">6명</option>
+      <option value="7">7명</option>
+      <option value="8">8명</option>
+      <option value="9">9명</option>
+      <option value="10">10명</option>
+      <option value="11">11명</option>
+    </select>
+
+    <small class="input-help">
+      본인을 포함한 공제대상 가족 수를 선택해주세요.
+    </small>
+
+
+    <label>8세~20세 자녀 수</label>
+
+    <input
+      type="number"
+      id="childCount"
+      value="0"
+      min="0"
+      max="20"
+    >
+
+
+    <label>소득세 원천징수 비율</label>
+
+    <select id="taxRateOption">
+      <option value="1">100% (일반)</option>
+      <option value="0.8">80%</option>
+      <option value="1.2">120%</option>
+    </select>
+
+
+    <button onclick="calculateSalary()">
+      내 월급 계산하기
+    </button>
+
+
+    <div id="result">
+      계산 결과가 여기에 표시됩니다.
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       퇴직금 계산기
+  ========================== -->
+
+  <hr class="section-divider">
+
+  <div
+    class="retirement-calculator"
+    id="retirement-section"
+  >
+
+    <h2>🏦 퇴직금 계산기</h2>
+
+    <p class="description">
+      입사일과 마지막 근무일,
+      퇴직 전 3개월 임금을 입력하면
+      예상 퇴직금을 계산해드립니다.
+    </p>
+
+
+    <label>입사일</label>
+
+    <input
+      type="date"
+      id="startDate"
+    >
+
+
+    <label>마지막 근무일</label>
+
+    <input
+      type="date"
+      id="lastWorkDate"
+    >
+
+    <small class="input-help">
+      실제 마지막으로 근무한 날짜를 입력해주세요.
+    </small>
+
+
+    <label>퇴직 전 3개월 임금 총액 (세전)</label>
+
+    <input
+      type="text"
+      id="threeMonthSalary"
+      placeholder="예: 9,000,000"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+    >
+
+    <small class="input-help">
+      퇴직 직전 3개월 동안의 임금 총액을 입력해주세요.
+    </small>
+
+
+    <label>1일 통상임금 (선택)</label>
+
+    <input
+      type="text"
+      id="ordinaryDailyWage"
+      placeholder="모르면 비워두세요"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+    >
+
+    <small class="input-help">
+      평균임금보다 통상임금이 높은 경우 비교 계산에 사용합니다.
+    </small>
+
+
+    <label>4주 평균 주 소정근로시간</label>
+
+    <input
+      type="number"
+      id="retirementWeeklyHours"
+      placeholder="예: 40"
+      min="0"
+      step="0.5"
+    >
+
+
+    <button onclick="calculateRetirementPay()">
+      퇴직금 계산하기
+    </button>
+
+
+    <div id="retirementResult">
+      퇴직금 계산 결과가 여기에 표시됩니다.
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       주휴수당 계산기
+  ========================== -->
+
+  <hr class="section-divider">
+
+  <div
+    class="retirement-calculator"
+    id="weekly-section"
+  >
+
+    <h2>📅 주휴수당 계산기</h2>
+
+    <p class="description">
+      시급과 근무시간을 입력하면
+      예상 주휴수당을 계산해드립니다.
+    </p>
+
+
+    <label>시급</label>
+
+    <input
+      type="text"
+      id="weeklyHourlyWage"
+      placeholder="예: 10,500"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+    >
+
+
+    <label>하루 근무시간</label>
+
+    <input
+      type="number"
+      id="weeklyHours"
+      placeholder="예: 8"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>주 근무일수</label>
+
+    <input
+      type="number"
+      id="weeklyDays"
+      placeholder="예: 5"
+      min="1"
+      max="7"
+    >
+
+
+    <button onclick="calculateWeeklyPay()">
+      주휴수당 계산하기
+    </button>
+
+
+    <div id="weeklyResult">
+      주휴수당 계산 결과가 여기에 표시됩니다.
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       연장·야간수당 계산기
+  ========================== -->
+
+  <hr class="section-divider">
+
+  <div
+    class="retirement-calculator"
+    id="extra-section"
+  >
+
+    <h2>🌙 연장·야간수당 계산기</h2>
+
+    <p class="description">
+      통상시급과 근무시간을 입력하면
+      예상 연장·야간수당을 계산해드립니다.
+    </p>
+
+
+    <label>통상시급</label>
+
+    <input
+      type="text"
+      id="extraHourlyWage"
+      placeholder="예: 10,500"
+      inputmode="numeric"
+      oninput="formatSalary(this)"
+    >
+
+
+    <label>사업장 상시근로자 수</label>
+
+    <select id="workplaceSize">
+      <option value="5plus">5인 이상</option>
+      <option value="under5">5인 미만</option>
+    </select>
+
+    <small class="input-help">
+      연장·야간근로 가산수당 적용 여부를 확인하기 위한 항목입니다.
+    </small>
+
+
+    <label>연장근무시간</label>
+
+    <input
+      type="number"
+      id="extraOvertimeHours"
+      placeholder="예: 10"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>야간근무시간</label>
+
+    <input
+      type="number"
+      id="extraNightHours"
+      placeholder="예: 5"
+      min="0"
+      step="0.5"
+    >
+
+
+    <label>연장·야간이 겹친 시간</label>
+
+    <input
+      type="number"
+      id="overlapHours"
+      placeholder="예: 2"
+      min="0"
+      step="0.5"
+      value="0"
+    >
+
+    <small class="input-help">
+      예: 연장근무 중 밤 10시 이후 근무가 2시간이었다면 2를 입력해주세요.
+    </small>
+
+
+    <button onclick="calculateExtraPay()">
+      추가수당 계산하기
+    </button>
+
+
+    <div id="extraPayResult">
+      추가수당 계산 결과가 여기에 표시됩니다.
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       하단 안내
+  ========================== -->
+
+  <hr class="section-divider">
+
+
+  <footer class="site-footer">
+
+    <strong>💰 월급연구소</strong>
+
+    <p>
+      직장인의 월급과 근로수당을
+      쉽고 빠르게 확인하기 위한 계산 서비스입니다.
+    </p>
+
+    <p>
+      계산 결과는 예상값이며 실제 급여·세금·퇴직금은
+      개인의 근로조건과 회사의 급여 산정방식에 따라
+      달라질 수 있습니다.
+    </p>
+
+    <p class="footer-copy">
+      © 2026 월급연구소
+    </p>
+
+  </footer>
+
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
