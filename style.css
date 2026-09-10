@@ -875,3 +875,14 @@ button:active {
     appearance: none;
   }
 }
+#startDate,
+#lastWorkDate {
+  text-align: left;
+  font-size: 16px;
+}
+
+#startDate::-webkit-date-and-time-value,
+#lastWorkDate::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
