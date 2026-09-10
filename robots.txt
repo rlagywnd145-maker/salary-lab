@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rlagywnd145-maker.github.io/salary-lab/sitemap.xml
+Sitemap: https://wolgeuplab.kr/sitemap.xml
