@@ -387,7 +387,7 @@ function calculateSalary() {
 
   const weeklyPayOption =
     document.getElementById("weeklyPay").value;
-    const weeksPerMonth = 365 / 7 / 12;
+    
 
   // 하루 8시간까지만 소정근로시간
   const regularDailyHours = Math.min(hours, 8);
