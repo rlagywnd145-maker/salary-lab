@@ -859,30 +859,4 @@ button:active {
     font-size: 13px;
   }
 }
-/* 아이폰 날짜 입력창 수정 */
-@media (max-width: 600px) {
-  #startDate,
-  #lastWorkDate {
-    display: block;
-    width: calc(100% - 28px);
-    max-width: calc(100% - 28px);
-    min-width: 0;
-    height: 52px;
-    margin: 0;
-    padding: 0 14px;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-}
-#startDate,
-#lastWorkDate {
-  text-align: left;
-  font-size: 16px;
-}
 
-#startDate::-webkit-date-and-time-value,
-#lastWorkDate::-webkit-date-and-time-value {
-  text-align: left;
-  margin: 0;
-}
