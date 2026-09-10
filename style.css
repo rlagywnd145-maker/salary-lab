@@ -862,3 +862,27 @@ button:active {
 💰 월급연구소
 개발자: 김효중
 }
+/* 모바일 입력창 최적화 */
+@media (max-width: 600px) {
+
+  input,
+  select {
+    min-height: 52px;
+    height: 52px;
+    padding: 0 14px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  input[type="date"] {
+    display: block;
+    width: 100%;
+    min-height: 52px;
+    height: 52px;
+    padding: 0 14px;
+    font-size: 16px;
+    line-height: 52px;
+    -webkit-appearance: auto;
+    appearance: auto;
+  }
+}
