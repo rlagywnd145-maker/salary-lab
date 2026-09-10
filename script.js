@@ -448,77 +448,70 @@ function calculateSalary() {
   }
 
 
-  const weeksPerMonth =
-    365 / 7 / 12;
+    // 월 평균 주수
+  const weeksPerMonth = 365 / 7 / 12;
 
+  // 하루 8시간까지만 소정근로시간으로 계산
+  const regularDailyHours = Math.min(hours, 8);
 
-  const weeklyWorkHours =
-    hours * days;
+  // 주 소정근로시간 (최대 40시간)
+  const weeklyRegularHours =
+    Math.min(regularDailyHours * days, 40);
 
-
-  const basicMonthlyHours =
-    weeklyWorkHours *
-    weeksPerMonth;
-
-
+  // 주휴시간
   let weeklyHolidayHours = 0;
 
-
-  if (weeklyWorkHours >= 15) {
-
-    if (weeklyWorkHours >= 40) {
-
-      weeklyHolidayHours = 8;
-
-    } else {
-
-      weeklyHolidayHours =
-        weeklyWorkHours / 40 * 8;
-    }
+  if (weeklyRegularHours >= 15) {
+    weeklyHolidayHours =
+      weeklyRegularHours >= 40
+        ? 8
+        : (weeklyRegularHours / 40) * 8;
   }
 
+  // 월 소정근로시간
+  const basicMonthlyHours =
+    weeklyRegularHours * weeksPerMonth;
 
+  // 월 주휴시간
   const monthlyHolidayHours =
-    weeklyHolidayHours *
-    weeksPerMonth;
-
+    weeklyHolidayHours * weeksPerMonth;
 
   let hourlyWage = 0;
   let weeklyHolidayPay = 0;
 
-
+  // 기본급에 주휴수당이 포함되어 있는 경우
   if (weeklyPayOption === "yes") {
 
     const paidMonthlyHours =
-      basicMonthlyHours +
-      monthlyHolidayHours;
+      basicMonthlyHours + monthlyHolidayHours;
 
     hourlyWage =
-      basicSalary /
-      paidMonthlyHours;
+      basicSalary / paidMonthlyHours;
 
   } else {
 
     hourlyWage =
-      basicSalary /
-      basicMonthlyHours;
+      basicSalary / basicMonthlyHours;
 
     weeklyHolidayPay =
-      hourlyWage *
-      monthlyHolidayHours;
+      hourlyWage * monthlyHolidayHours;
   }
 
-
+  // 입력한 월 연장근로시간에 대한 연장근로수당
   const overtimePay =
     hourlyWage *
     overtime *
     1.5;
 
-
+  // 야간근로는 추가 0.5배 가산
   const nightExtraPay =
     hourlyWage *
     night *
     0.5;
+
+  // 결과에 표시할 주 근로시간
+  const weeklyWorkHours =
+    hours * days;
 
 
   const grossSalary =
