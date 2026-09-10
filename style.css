@@ -859,11 +859,6 @@ button:active {
     font-size: 13px;
   }
 }
-/* 개발자 표시 */
-.developer-credit {
-  margin: 8px 0 18px;
-  font-size: 13px;
-  font-weight: 500;
-  opacity: 0.6;
-  text-align: center;
+💰 월급연구소
+개발자: 김효중
 }
