@@ -886,3 +886,12 @@ button:active {
     appearance: auto;
   }
 }
+/* 아이폰 퇴직금 날짜 입력칸 너비 수정 */
+#startDate,
+#lastWorkDate {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
