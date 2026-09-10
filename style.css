@@ -859,9 +859,7 @@ button:active {
     font-size: 13px;
   }
 }
-💰 월급연구소
-개발자: 김효중
-}
+
 /* 모바일 입력창 최적화 */
 @media (max-width: 600px) {
 
@@ -874,17 +872,19 @@ button:active {
     box-sizing: border-box;
   }
 
-  input[type="date"] {
-    display: block;
-    width: 100%;
-    min-height: 52px;
-    height: 52px;
-    padding: 0 14px;
-    font-size: 16px;
-    line-height: 52px;
-    -webkit-appearance: auto;
-    appearance: auto;
-  }
+ input[type="date"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 52px;
+  height: 52px;
+  padding: 0 14px;
+  font-size: 16px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
 }
 /* 아이폰 퇴직금 날짜 입력칸 너비 수정 */
 #startDate,
