@@ -225,12 +225,14 @@
 
     <label>입사일</label>
 
-  <input
+ <input
   type="text"
   id="startDate"
   placeholder="예: 2025-09-03"
   inputmode="numeric"
+  maxlength="10"
   aria-label="입사일"
+  oninput="let v=this.value.replace(/\D/g,'').slice(0,8); if(v.length>4)v=v.slice(0,4)+'-'+v.slice(4); if(v.length>7)v=v.slice(0,7)+'-'+v.slice(7); this.value=v;"
 >
 
 
@@ -241,7 +243,10 @@
   id="lastWorkDate"
   placeholder="예: 2026-09-10"
   inputmode="numeric"
+  maxlength="10"
   aria-label="마지막 근무일"
+  oninput="let v=this.value.replace(/\D/g,'').slice(0,8); if(v.length>4)v=v.slice(0,4)+'-'+v.slice(4); if(v.length>7)v=v.slice(0,7)+'-'+v.slice(7); this.value=v;"
+>
 >
 
     <small class="input-help">
