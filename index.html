@@ -172,7 +172,20 @@
 <small class="input-help">
   휴일에 실제 근무한 시간을 입력해주세요.
 </small>
+<label>월 기타 휴일수당 (선택)</label>
 
+<input
+  type="text"
+  id="holidayAllowance"
+  placeholder="예: 229,665"
+  inputmode="numeric"
+  oninput="formatSalary(this)"
+  value="0"
+>
+
+<small class="input-help">
+  급여명세서에 별도 휴일수당이 있다면 입력해주세요.
+</small>
     <label>공제대상 가족 수</label>
 
     <select id="familyCount">
