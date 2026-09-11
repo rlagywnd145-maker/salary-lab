@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    2026 최저임금 계산기 | 최저시급·일급·월급 계산 - 월급연구소
+  </title>
+
+  <meta
+    name="description"
+    content="2026년 최저임금 시급 10,320원 기준으로 일급, 주급, 주휴수당, 월급을 간편하게 계산해보세요. 근무시간과 근무일수를 입력하면 예상 최저임금을 계산해드립니다."
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <link
+    rel="canonical"
+    href="https://wolgeuplab.kr/minimum-wage.html"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="2026 최저임금 계산기 | 월급연구소"
+  >
+
+  <meta
+    property="og:description"
+    content="2026년 최저시급 10,320원 기준 일급·주급·주휴수당·월급을 계산해보세요."
+  >
+
+  <meta
+    property="og:url"
+    content="https://wolgeuplab.kr/minimum-wage.html"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
+
+  <style>
+
+    .minimum-page {
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 18px 60px;
+    }
+
+    .minimum-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    }
+
+    .minimum-page h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .minimum-description {
+      text-align: center;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .minimum-highlight {
+      background: #111;
+      color: #fff;
+      border-radius: 24px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .minimum-highlight span {
+      display: block;
+      font-size: 15px;
+      opacity: 0.75;
+      margin-bottom: 8px;
+    }
+
+    .minimum-highlight strong {
+      display: block;
+      font-size: 38px;
+    }
+
+    .minimum-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .minimum-stat {
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    .minimum-stat span {
+      display: block;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .minimum-stat strong {
+      font-size: 19px;
+    }
+
+    .minimum-page label {
+      display: block;
+      font-weight: 700;
+      margin: 20px 0 8px;
+    }
+
+    .minimum-page input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 17px;
+      border: 1px solid #d9dee7;
+      border-radius: 15px;
+      font-size: 17px;
+    }
+
+    .minimum-button {
+      width: 100%;
+      border: 0;
+      border-radius: 15px;
+      background: #111;
+      color: #fff;
+      padding: 18px;
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 26px;
+      cursor: pointer;
+    }
+
+    #minimumResult {
+      display: none;
+      margin-top: 28px;
+    }
+
+    .minimum-result-main {
+      background: #111;
+      color: #fff;
+      border-radius: 22px;
+      padding: 28px 18px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .minimum-result-main span {
+      display: block;
+      opacity: 0.75;
+      margin-bottom: 10px;
+    }
+
+    .minimum-result-main strong {
+      font-size: 34px;
+    }
+
+    .minimum-result-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .minimum-result-row:last-child {
+      border-bottom: 0;
+    }
+
+    .minimum-info {
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .minimum-home {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+
+      .minimum-page {
+        margin-top: 20px;
+      }
+
+      .minimum-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .minimum-highlight strong {
+        font-size: 32px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <main class="minimum-page">
+
+    <a
+      class="minimum-home"
+      href="./index.html"
+    >
+      ← 월급연구소
+    </a>
+
+
+    <section class="minimum-card">
+
+      <h1>
+        💰 2026 최저임금 계산기
+      </h1>
+
+      <p class="minimum-description">
+        2026년 최저시급을 기준으로
+        일급·주급·주휴수당·월 예상급여를
+        간편하게 계산해보세요.
+      </p>
+
+
+      <div class="minimum-highlight">
+
+        <span>
+          2026년 최저시급
+        </span>
+
+        <strong>
+          10,320원
+        </strong>
+
+      </div>
+
+
+      <div class="minimum-grid">
+
+        <div class="minimum-stat">
+
+          <span>
+            8시간 일급
+          </span>
+
+          <strong>
+            82,560원
+          </strong>
+
+        </div>
+
+
+        <div class="minimum-stat">
+
+          <span>
+            월 209시간
+          </span>
+
+          <strong>
+            2,156,880원
+          </strong>
+
+        </div>
+
+
+        <div class="minimum-stat">
+
+          <span>
+            전년 대비
+          </span>
+
+          <strong>
+            +290원
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <label>
+        하루 근무시간
+      </label>
+
+      <input
+        type="number"
+        id="minimumHours"
+        placeholder="예: 8"
+        min="0"
+        step="0.5"
+      >
+
+
+      <label>
+        주 근무일수
+      </label>
+
+      <input
+        type="number"
+        id="minimumDays"
+        placeholder="예: 5"
+        min="1"
+        max="7"
+        step="1"
+      >
+
+
+      <button
+        class="minimum-button"
+        onclick="calculateMinimumWage()"
+      >
+        2026 최저임금 계산하기
+      </button>
+
+
+      <div id="minimumResult"></div>
+
+    </section>
+
+
+    <section class="minimum-card minimum-info">
+
+      <h2>
+        📌 2026년 최저임금은?
+      </h2>
+
+      <p>
+        2026년 적용 최저임금은
+        시간당 <strong>10,320원</strong>입니다.
+      </p>
+
+      <p>
+        하루 8시간 기준 일급은
+        <strong>82,560원</strong>이며,
+        주 40시간 근무하고 유급주휴 8시간을 포함한
+        월 209시간 기준 월급은
+        <strong>2,156,880원</strong>입니다.
+      </p>
+
+      <p>
+        실제 급여는 근로시간,
+        주휴수당 적용 여부,
+        연장·야간·휴일근로,
+        근로계약 조건 등에 따라 달라질 수 있습니다.
+      </p>
+
+    </section>
+
+
+    <section class="minimum-card minimum-info">
+
+      <h2>
+        🔎 다른 계산기도 이용해보세요
+      </h2>
+
+      <p>
+        월급 실수령액, 퇴직금, 주휴수당,
+        연장·야간수당도 월급연구소에서
+        무료로 계산할 수 있습니다.
+      </p>
+
+      <a href="./index.html">
+        월급 계산기 바로가기 →
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    const MINIMUM_WAGE_2026 = 10320;
+
+    function won(value) {
+
+      return Math.round(value)
+        .toLocaleString("ko-KR");
+
+    }
+
+
+    function calculateMinimumWage() {
+
+      const hours =
+        Number(
+          document.getElementById("minimumHours").value
+        );
+
+      const days =
+        Number(
+          document.getElementById("minimumDays").value
+        );
+
+      const result =
+        document.getElementById("minimumResult");
+
+
+      if (
+        !hours ||
+        !days ||
+        hours <= 0 ||
+        days <= 0
+      ) {
+
+        result.style.display = "block";
+
+        result.innerHTML =
+          "<p>⚠️ 하루 근무시간과 주 근무일수를 입력해주세요.</p>";
+
+        return;
+
+      }
+
+
+      const weeklyHours =
+        hours * days;
+
+
+      let weeklyHolidayHours = 0;
+
+
+      if (weeklyHours >= 15) {
+
+        weeklyHolidayHours =
+          weeklyHours >= 40
+            ? 8
+            : (weeklyHours / 40) * 8;
+
+      }
+
+
+      const dailyPay =
+        MINIMUM_WAGE_2026 *
+        hours;
+
+
+      const weeklyBasicPay =
+        MINIMUM_WAGE_2026 *
+        weeklyHours;
+
+
+      const weeklyHolidayPay =
+        MINIMUM_WAGE_2026 *
+        weeklyHolidayHours;
+
+
+      const weeklyTotalPay =
+        weeklyBasicPay +
+        weeklyHolidayPay;
+
+
+      const weeksPerMonth =
+        365 / 7 / 12;
+
+
+      const monthlyPay =
+        weeklyTotalPay *
+        weeksPerMonth;
+
+
+      result.style.display = "block";
+
+
+      result.innerHTML = `
+
+        <div class="minimum-result-main">
+
+          <span>
+            예상 월 최저임금
+          </span>
+
+          <strong>
+            ${won(monthlyPay)}원
+          </strong>
+
+        </div>
+
+
+        <div class="minimum-card">
+
+          <div class="minimum-result-row">
+
+            <span>
+              하루 근로시간
+            </span>
+
+            <strong>
+              ${hours}시간
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              주 근로시간
+            </span>
+
+            <strong>
+              ${weeklyHours.toFixed(1)}시간
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              예상 일급
+            </span>
+
+            <strong>
+              ${won(dailyPay)}원
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              주 기본급
+            </span>
+
+            <strong>
+              ${won(weeklyBasicPay)}원
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              주휴시간
+            </span>
+
+            <strong>
+              ${weeklyHolidayHours.toFixed(1)}시간
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              예상 주휴수당
+            </span>
+
+            <strong>
+              ${won(weeklyHolidayPay)}원
+            </strong>
+
+          </div>
+
+
+          <div class="minimum-result-row">
+
+            <span>
+              예상 주급
+            </span>
+
+            <strong>
+              ${won(weeklyTotalPay)}원
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <p class="minimum-info">
+          ※ 2026년 최저시급 10,320원을 기준으로 계산한 예상값입니다.
+          실제 임금은 근로계약과 근무형태 등에 따라 달라질 수 있습니다.
+        </p>
+
+      `;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
