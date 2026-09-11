@@ -659,7 +659,13 @@ const holidayAllowance =
       grossSalary -
       safeNonTaxable
     );
+const insuranceBaseInput =
+  getMoneyValue("insuranceBase");
 
+const insuranceBase =
+  insuranceBaseInput > 0
+    ? insuranceBaseInput
+    : taxablePay;
 
   // ==============================
   // 국민연금
@@ -667,7 +673,7 @@ const holidayAllowance =
 
   let pensionBase =
     Math.floor(
-      taxablePay / 1000
+      insuranceBase / 1000
     ) * 1000;
 
   pensionBase =
@@ -692,7 +698,7 @@ const holidayAllowance =
 
   const healthInsurance =
     floorTo10(
-      taxablePay *
+      insuranceBase *
       0.03595
     );
 
