@@ -675,7 +675,7 @@ const holidayAllowance =
       pensionBase,
       410000,
       6590000
-    );
+    ); 
 
   const pension =
     taxablePay > 0
