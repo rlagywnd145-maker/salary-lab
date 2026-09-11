@@ -369,6 +369,8 @@ function calculateIncomeTax(
 
 function calculateSalary() {
 
+  const MIN_WAGE_2026 = 10320;
+
   const basicSalary =
     getMoneyValue("salary");
 
@@ -378,12 +380,12 @@ function calculateSalary() {
   const hours =
     Number(
       document.getElementById("hours").value
-    );
+    ) || 0;
 
   const days =
     Number(
       document.getElementById("days").value
-    );
+    ) || 0;
 
   const weeklyPayOption =
     document.getElementById("weeklyPay").value;
@@ -397,6 +399,27 @@ function calculateSalary() {
     Number(
       document.getElementById("night").value
     ) || 0;
+
+
+  // 휴일근로 입력칸은 잠시 후 추가
+  const holidayElement =
+    document.getElementById("holidayHours");
+
+  const holidayHours =
+    holidayElement
+      ? Number(holidayElement.value) || 0
+      : 0;
+
+
+  // 연장·야간수당 포함 여부
+  const extraPayElement =
+    document.getElementById("extraPayIncluded");
+
+  const extraPayIncluded =
+    extraPayElement
+      ? extraPayElement.value
+      : "no";
+
 
   const familyCount =
     Number(
@@ -416,9 +439,10 @@ function calculateSalary() {
   const result =
     document.getElementById("result");
 
-  const weeksPerMonth =
-    365 / 7 / 12;
 
+  // ==============================
+  // 입력값 확인
+  // ==============================
 
   if (
     basicSalary <= 0 ||
@@ -427,7 +451,7 @@ function calculateSalary() {
   ) {
 
     result.innerHTML =
-      "⚠️ 기본급, 하루 근무시간, 주 근무일수를 입력해주세요.";
+      "⚠️ 월 기본급, 하루 근무시간, 주 근무일수를 입력해주세요.";
 
     return;
   }
@@ -445,89 +469,186 @@ function calculateSalary() {
   if (taxTableStatus === "error") {
 
     result.innerHTML =
-      "⚠️ 근로소득 간이세액표를 불러오지 못했습니다. 인터넷 연결을 확인한 뒤 새로고침해주세요.";
+      "⚠️ 근로소득 간이세액표를 불러오지 못했습니다. 새로고침 후 다시 시도해주세요.";
 
     return;
   }
 
 
-  
-  // 하루 8시간까지만 소정근로시간으로 계산
-  const regularDailyHours = Math.min(hours, 8);
+  // ==============================
+  // 소정근로시간
+  // ==============================
 
-  // 주 소정근로시간 (최대 40시간)
+  // 하루 최대 8시간을 소정근로시간으로 계산
+  const regularDailyHours =
+    Math.min(hours, 8);
+
+  // 주 최대 40시간
   const weeklyRegularHours =
-    Math.min(regularDailyHours * days, 40);
+    Math.min(
+      regularDailyHours * days,
+      40
+    );
 
+  // 실제 주 근무시간
+  const weeklyWorkHours =
+    hours * days;
+
+
+  // ==============================
   // 주휴시간
+  // ==============================
+
   let weeklyHolidayHours = 0;
 
   if (weeklyRegularHours >= 15) {
+
     weeklyHolidayHours =
       weeklyRegularHours >= 40
         ? 8
-        : (weeklyRegularHours / 40) * 8;
+        : weeklyRegularHours / 40 * 8;
   }
 
-  // 월 소정근로시간
-  const basicMonthlyHours =
-    weeklyRegularHours * weeksPerMonth;
 
-  // 월 주휴시간
+  // ==============================
+  // 월 환산시간
+  // ==============================
+
+  const weeksPerMonth =
+    365 / 7 / 12;
+
+  // 일반적으로 월 환산시간은 정수 시간으로 사용
+  const basicMonthlyHours =
+    Math.round(
+      weeklyRegularHours *
+      weeksPerMonth
+    );
+
   const monthlyHolidayHours =
-    weeklyHolidayHours * weeksPerMonth;
+    Math.round(
+      weeklyHolidayHours *
+      weeksPerMonth
+    );
+
+
+  // ==============================
+  // 통상시급 계산
+  // ==============================
 
   let hourlyWage = 0;
   let weeklyHolidayPay = 0;
 
-  // 기본급에 주휴수당이 포함되어 있는 경우
+
   if (weeklyPayOption === "yes") {
 
     const paidMonthlyHours =
-      basicMonthlyHours + monthlyHolidayHours;
+      basicMonthlyHours +
+      monthlyHolidayHours;
 
     hourlyWage =
-      basicSalary / paidMonthlyHours;
+      paidMonthlyHours > 0
+        ? basicSalary / paidMonthlyHours
+        : 0;
 
   } else {
 
     hourlyWage =
-      basicSalary / basicMonthlyHours;
+      basicMonthlyHours > 0
+        ? basicSalary / basicMonthlyHours
+        : 0;
 
     weeklyHolidayPay =
-      hourlyWage * monthlyHolidayHours;
+      hourlyWage *
+      monthlyHolidayHours;
   }
 
-  // 입력한 월 연장근로시간에 대한 연장근로수당
+
+  // ==============================
+  // 연장근로수당
+  // ==============================
+
   const overtimePay =
     hourlyWage *
     overtime *
     1.5;
 
-  // 야간근로는 추가 0.5배 가산
+
+  // ==============================
+  // 야간근로 가산액
+  // 야간은 추가 0.5배
+  // ==============================
+
   const nightExtraPay =
     hourlyWage *
     night *
     0.5;
 
-  // 결과에 표시할 주 근로시간
-  const weeklyWorkHours =
-    hours * days;
+
+  // ==============================
+  // 휴일근로수당
+  // 8시간 이내 1.5배
+  // 8시간 초과분 2배
+  // ==============================
+
+  const holidayNormalHours =
+    Math.min(
+      holidayHours,
+      8
+    );
+
+  const holidayOverHours =
+    Math.max(
+      holidayHours - 8,
+      0
+    );
+
+  const holidayPay =
+    hourlyWage *
+    (
+      holidayNormalHours * 1.5 +
+      holidayOverHours * 2
+    );
 
 
-  const grossSalary =
-    basicSalary +
-    weeklyHolidayPay +
-    overtimePay +
-    nightExtraPay;
+  // ==============================
+  // 총급여
+  // ==============================
 
+  let grossSalary = 0;
+
+
+  if (extraPayIncluded === "yes") {
+
+    // 입력한 기본급/월급에 연장·야간수당이
+    // 이미 포함된 경우 중복 합산하지 않음
+    grossSalary =
+      basicSalary +
+      weeklyHolidayPay +
+      holidayPay;
+
+  } else {
+
+    grossSalary =
+      basicSalary +
+      weeklyHolidayPay +
+      overtimePay +
+      nightExtraPay +
+      holidayPay;
+  }
+
+
+  // ==============================
+  // 과세 급여
+  // ==============================
 
   const safeNonTaxable =
     Math.min(
-      Math.max(nonTaxablePay, 0),
+      Math.max(
+        nonTaxablePay,
+        0
+      ),
       grossSalary
     );
-
 
   const taxablePay =
     Math.max(
@@ -537,11 +658,14 @@ function calculateSalary() {
     );
 
 
+  // ==============================
+  // 국민연금
+  // ==============================
+
   let pensionBase =
     Math.floor(
       taxablePay / 1000
     ) * 1000;
-
 
   pensionBase =
     clamp(
@@ -549,7 +673,6 @@ function calculateSalary() {
       410000,
       6590000
     );
-
 
   const pension =
     taxablePay > 0
@@ -560,12 +683,20 @@ function calculateSalary() {
       : 0;
 
 
+  // ==============================
+  // 건강보험
+  // ==============================
+
   const healthInsurance =
     floorTo10(
       taxablePay *
       0.03595
     );
 
+
+  // ==============================
+  // 장기요양보험
+  // ==============================
 
   const longTermCare =
     floorTo10(
@@ -574,12 +705,20 @@ function calculateSalary() {
     );
 
 
+  // ==============================
+  // 고용보험
+  // ==============================
+
   const employmentInsurance =
     floorTo10(
       taxablePay *
       0.009
     );
 
+
+  // ==============================
+  // 소득세
+  // ==============================
 
   const incomeTax =
     calculateIncomeTax(
@@ -601,9 +740,14 @@ function calculateSalary() {
 
   const localIncomeTax =
     floorTo10(
-      incomeTax * 0.10
+      incomeTax *
+      0.10
     );
 
+
+  // ==============================
+  // 총 공제
+  // ==============================
 
   const totalDeduction =
     pension +
@@ -631,14 +775,27 @@ function calculateSalary() {
 
   const dailyWage =
     hourlyWage *
-    hours;
+    regularDailyHours;
 
+
+  // ==============================
+  // 2026 최저임금 비교
+  // ==============================
+
+  const minimumWageStatus =
+    hourlyWage >= MIN_WAGE_2026;
+
+
+  // ==============================
+  // 결과 표시
+  // ==============================
 
   result.innerHTML = `
 
     <div class="result-title">
       💰 예상 월급 분석
     </div>
+
 
     <div class="main-result-card">
 
@@ -650,34 +807,81 @@ function calculateSalary() {
 
     </div>
 
+
     <div class="result-grid">
 
       <div class="result-card">
-        <span>예상 환산 시급</span>
-        <strong>${money(hourlyWage)}원</strong>
+
+        <span>예상 통상시급</span>
+
+        <strong>
+          ${money(hourlyWage)}원
+        </strong>
+
       </div>
 
+
       <div class="result-card">
+
         <span>예상 일급</span>
-        <strong>${money(dailyWage)}원</strong>
+
+        <strong>
+          ${money(dailyWage)}원
+        </strong>
+
       </div>
 
+
       <div class="result-card">
+
         <span>연장근로수당</span>
-        <strong>${money(overtimePay)}원</strong>
+
+        <strong>
+          ${money(overtimePay)}원
+        </strong>
+
       </div>
 
+
       <div class="result-card">
+
         <span>야간근로 가산액</span>
-        <strong>${money(nightExtraPay)}원</strong>
+
+        <strong>
+          ${money(nightExtraPay)}원
+        </strong>
+
+      </div>
+
+
+      <div class="result-card">
+
+        <span>휴일근로수당</span>
+
+        <strong>
+          ${money(holidayPay)}원
+        </strong>
+
+      </div>
+
+
+      <div class="result-card">
+
+        <span>2026 최저시급</span>
+
+        <strong>
+          ${money(MIN_WAGE_2026)}원
+        </strong>
+
       </div>
 
     </div>
 
+
     <div class="salary-summary">
 
       <p>
-        기본급
+        월 기본급
         <strong>${money(basicSalary)}원</strong>
       </p>
 
@@ -707,6 +911,79 @@ function calculateSalary() {
       </p>
 
     </div>
+
+
+    <div class="quick-analysis">
+
+      <div class="quick-title">
+        📊 계산 기준
+      </div>
+
+      <p>
+        주 소정근로시간
+        <strong>
+          ${weeklyRegularHours.toFixed(1)}시간
+        </strong>
+      </p>
+
+      <p>
+        실제 주 근로시간
+        <strong>
+          ${weeklyWorkHours.toFixed(1)}시간
+        </strong>
+      </p>
+
+      <p>
+        주휴시간
+        <strong>
+          ${weeklyHolidayHours.toFixed(1)}시간
+        </strong>
+      </p>
+
+      <p>
+        월 환산 유급시간
+        <strong>
+          ${
+            basicMonthlyHours +
+            (
+              weeklyPayOption === "yes"
+                ? monthlyHolidayHours
+                : 0
+            )
+          }시간
+        </strong>
+      </p>
+
+      <p>
+        최저임금 비교
+        <strong>
+          ${
+            minimumWageStatus
+              ? "✅ 2026년 최저시급 이상"
+              : "⚠️ 2026년 최저시급 미만"
+          }
+        </strong>
+      </p>
+
+      <p>
+        공제대상 가족
+        <strong>${familyCount}명</strong>
+      </p>
+
+      <p>
+        8세~20세 자녀
+        <strong>${childCount}명</strong>
+      </p>
+
+      <p>
+        소득세 원천징수
+        <strong>
+          ${Math.round(taxRateOption * 100)}%
+        </strong>
+      </p>
+
+    </div>
+
 
     <div class="deduction-detail">
 
@@ -751,47 +1028,19 @@ function calculateSalary() {
 
     </div>
 
-    <div class="quick-analysis">
-
-      <div class="quick-title">
-        📊 계산 기준
-      </div>
-
-      <p>
-        주 근로시간
-        <strong>${weeklyWorkHours.toFixed(1)}시간</strong>
-      </p>
-
-      <p>
-        주휴시간
-        <strong>${weeklyHolidayHours.toFixed(1)}시간</strong>
-      </p>
-
-      <p>
-        공제대상 가족
-        <strong>${familyCount}명</strong>
-      </p>
-
-      <p>
-        8세~20세 자녀
-        <strong>${childCount}명</strong>
-      </p>
-
-      <p>
-        소득세 원천징수
-        <strong>${Math.round(taxRateOption * 100)}%</strong>
-      </p>
-
-    </div>
 
     <div class="result-notice">
 
-      ※ 2026년 보험료율과 근로소득 간이세액표를 기준으로 한 예상 계산입니다.
+      ※ 2026년 최저시급 10,320원을 기준으로 비교합니다.
 
       <br><br>
 
-      ※ 실제 급여는 회사의 급여 산정방식,
-      비과세 항목, 부양가족, 근로조건 등에 따라 달라질 수 있습니다.
+      ※ 통상시급 및 각종 수당은 입력한 근로조건을 기준으로 계산한 예상값입니다.
+
+      <br><br>
+
+      ※ 실제 급여는 회사의 급여 산정방식, 비과세 항목,
+      통상임금 범위, 휴일근로 형태 등에 따라 달라질 수 있습니다.
 
     </div>
   `;
