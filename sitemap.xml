@@ -28,5 +28,14 @@
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
+</url>
 
+<url>
+  <loc>https://wolgeuplab.kr/hourly-wage.html</loc>
+  <lastmod>2026-09-12</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+</urlset>
 </urlset>
