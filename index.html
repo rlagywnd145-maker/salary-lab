@@ -99,7 +99,21 @@
       식대 등 비과세로 지급되는 금액이 있다면 입력해주세요.
     </small>
 
+<label>4대보험 보수월액 (선택)</label>
 
+<input
+  type="text"
+  id="insuranceBase"
+  placeholder="예: 3,000,000"
+  inputmode="numeric"
+  oninput="formatSalary(this)"
+  value="0"
+>
+
+<small class="input-help">
+  국민연금·건강보험 신고 보수월액을 알고 있다면 입력해주세요.
+  모르면 0으로 두세요.
+</small>
     <label>하루 근무시간</label>
 
     <input
