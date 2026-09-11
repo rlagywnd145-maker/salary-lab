@@ -22,6 +22,7 @@ let taxTableStatus = "loading";
     try {
 
       if (
+      
         typeof TAX_TABLE !== "undefined" &&
         typeof TAX_TABLE_HIGH !== "undefined"
       ) {
