@@ -453,12 +453,13 @@
     <label>통상시급</label>
 
     <input
-      type="text"
-      id="extraHourlyWage"
-      placeholder="예: 10,500"
-      inputmode="numeric"
-      oninput="formatSalary(this)"
-    >
+  type="number"
+  id="extraHourlyWage"
+  placeholder="예: 10338.5"
+  inputmode="decimal"
+  min="0"
+  step="0.1"
+>
 
 
     <label>사업장 상시근로자 수</label>
