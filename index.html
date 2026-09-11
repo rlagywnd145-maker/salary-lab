@@ -239,7 +239,18 @@
       <option value="0.8">80%</option>
       <option value="1.2">120%</option>
     </select>
+<label>소득세 감면율</label>
 
+<select id="incomeTaxReduction">
+  <option value="0">감면 없음</option>
+  <option value="0.5">50% 감면</option>
+  <option value="0.7">70% 감면</option>
+  <option value="0.9">90% 감면</option>
+</select>
+
+<small class="input-help">
+  중소기업 취업자 등 소득세 감면 대상인 경우 선택해주세요.
+</small>
 
     <button onclick="calculateSalary()">
       내 월급 계산하기
