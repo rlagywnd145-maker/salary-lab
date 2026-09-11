@@ -410,7 +410,8 @@ function calculateSalary() {
       ? Number(holidayElement.value) || 0
       : 0;
 
-
+const holidayAllowance =
+  getMoneyValue("holidayAllowance");
   // 연장·야간수당 포함 여부
   const extraPayElement =
     document.getElementById("extraPayIncluded");
@@ -622,18 +623,19 @@ function calculateSalary() {
     // 입력한 기본급/월급에 연장·야간수당이
     // 이미 포함된 경우 중복 합산하지 않음
     grossSalary =
-      basicSalary +
-      weeklyHolidayPay +
-      holidayPay;
-
+  basicSalary +
+  weeklyHolidayPay +
+  holidayPay +
+  holidayAllowance;
   } else {
 
     grossSalary =
-      basicSalary +
-      weeklyHolidayPay +
-      overtimePay +
-      nightExtraPay +
-      holidayPay;
+  basicSalary +
+  weeklyHolidayPay +
+  overtimePay +
+  nightExtraPay +
+  holidayPay +
+  holidayAllowance;
   }
 
 
@@ -884,7 +886,10 @@ function calculateSalary() {
         월 기본급
         <strong>${money(basicSalary)}원</strong>
       </p>
-
+<p>
+  기타 휴일수당
+  <strong>${money(holidayAllowance)}원</strong>
+</p>
       <p>
         주휴수당
         <strong>${money(weeklyHolidayPay)}원</strong>
