@@ -437,7 +437,10 @@ const holidayAllowance =
     Number(
       document.getElementById("taxRateOption").value
     ) || 1;
-
+const incomeTaxReduction =
+  Number(
+    document.getElementById("incomeTaxReduction").value
+  ) || 0;
   const result =
     document.getElementById("result");
 
@@ -729,13 +732,21 @@ const insuranceBase =
   // 소득세
   // ==============================
 
-  const incomeTax =
-    calculateIncomeTax(
-      taxablePay,
-      familyCount,
-      childCount,
-      taxRateOption
-    );
+  const baseIncomeTax =
+  calculateIncomeTax(
+    taxablePay,
+    familyCount,
+    childCount,
+    taxRateOption
+  );
+
+const incomeTax =
+  baseIncomeTax === null
+    ? null
+    : floorTo10(
+        baseIncomeTax *
+        (1 - incomeTaxReduction)
+      );
 
 
   if (incomeTax === null) {
