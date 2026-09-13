@@ -138,5 +138,46 @@
   <changefreq>monthly</changefreq>
   <priority>0.8</priority>
 </url>
+<url>
+  <loc>https://wolgeuplab.kr/salary-200.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://wolgeuplab.kr/salary-550.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://wolgeuplab.kr/salary-3500.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://wolgeuplab.kr/salary-4500.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://wolgeuplab.kr/salary-8000.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://wolgeuplab.kr/salary-9000.html</loc>
+  <lastmod>2026-09-13</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 
 </urlset>
