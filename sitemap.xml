@@ -35,6 +35,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
     <loc>https://wolgeuplab.kr/minimum-wage.html</loc>
     <lastmod>2026-09-12</lastmod>
@@ -62,10 +63,19 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://wolgeuplab.kr/salary-4000.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+  <url>
+    <loc>https://wolgeuplab.kr/salary-5000.html</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
