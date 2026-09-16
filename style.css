@@ -1096,3 +1096,109 @@ button:active {
     font-size: 14px;
   }
 }
+/* =========================
+   툴픽 추천 카드
+========================= */
+
+.toolpick-link-card {
+  max-width: 520px;
+  margin: 28px auto;
+  padding: 20px 22px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  text-decoration: none;
+  color: #111827;
+
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s ease,
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.toolpick-link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border-color: #1687ff;
+}
+
+.toolpick-link-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f7ff;
+  border-radius: 14px;
+
+  font-size: 24px;
+}
+
+.toolpick-link-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.toolpick-link-text strong {
+  display: block;
+  margin-bottom: 5px;
+
+  color: #1687ff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.toolpick-link-text span {
+  display: block;
+
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.toolpick-link-arrow {
+  flex-shrink: 0;
+  color: #1687ff;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+
+/* 모바일 */
+@media (max-width: 600px) {
+
+  .toolpick-link-card {
+    width: calc(100% - 32px);
+    box-sizing: border-box;
+
+    margin: 24px auto;
+    padding: 17px 16px;
+
+    gap: 12px;
+  }
+
+  .toolpick-link-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 21px;
+  }
+
+  .toolpick-link-text strong {
+    font-size: 15px;
+  }
+
+  .toolpick-link-text span {
+    font-size: 12px;
+  }
+
+}
