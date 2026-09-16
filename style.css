@@ -1195,104 +1195,100 @@ button:active {
     font-size: 13px;
   }
 }
-/* =========================
-   월급·세금 가이드 - 툴픽 메인 추천 카드
-========================= */
+/* ===== 툴픽 추천 카드 ===== */
 
-.guide-grid > a.toolpick-feature-card {
-    grid-column: 1 / -1 !important;
-    width: 100% !important;
-    min-height: 180px !important;
-    box-sizing: border-box;
+.guide-grid > .toolpick-feature-card {
+  grid-column: 1 / -1 !important;
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
+  width: 100%;
+  min-height: 190px;
+  padding: 28px 30px;
 
-    padding: 28px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-    background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%) !important;
-    border: 2px solid #dbeafe !important;
-    border-radius: 20px !important;
+  gap: 10px;
 
-    text-align: center !important;
-    text-decoration: none !important;
-    color: #111 !important;
+  box-sizing: border-box;
 
-    box-shadow: 0 8px 24px rgba(0,0,0,0.07) !important;
+  background: linear-gradient(135deg, #ffffff, #f4f8ff);
+  border: 2px solid #dbeafe;
+  border-radius: 20px;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+  text-decoration: none !important;
+  text-align: center;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+
+  transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.guide-grid > a.toolpick-feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 32px rgba(0,0,0,0.12) !important;
+.guide-grid > .toolpick-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
 }
 
 
-/* 상단 작은 문구 */
+/* 작은 배지 */
 
-.toolpick-feature-badge {
-    display: inline-block;
-    padding: 6px 12px;
+.toolpick-feature-card .toolpick-feature-badge {
+  display: block;
 
-    background: #eaf3ff;
-    color: #1677ff !important;
+  padding: 6px 12px;
 
-    border-radius: 20px;
+  background: #eaf3ff;
+  color: #1677ff;
 
-    font-size: 12px !important;
-    font-weight: 700 !important;
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 700;
 }
 
 
-/* 메인 제목 */
+/* 제목 */
 
-.toolpick-feature-title {
-    display: block;
+.toolpick-feature-card .toolpick-feature-title {
+  display: block;
 
-    font-size: 23px !important;
-    font-weight: 800 !important;
-    color: #111 !important;
+  color: #111;
 
-    line-height: 1.4;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
 }
 
 
 /* 설명 */
 
-.toolpick-feature-desc {
-    display: block;
+.toolpick-feature-card .toolpick-feature-desc {
+  display: block;
 
-    max-width: 520px;
+  color: #666;
 
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: #666 !important;
-
-    line-height: 1.6;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 
 /* 버튼 */
 
-.toolpick-feature-button {
-    display: inline-block;
+.toolpick-feature-card .toolpick-feature-button {
+  display: block;
 
-    margin-top: 4px;
-    padding: 10px 18px;
+  margin-top: 4px;
+  padding: 10px 18px;
 
-    background: #111 !important;
-    color: #fff !important;
+  background: #111;
+  color: #fff;
 
-    border-radius: 10px;
+  border-radius: 10px;
 
-    font-size: 13px !important;
-    font-weight: 700 !important;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 
@@ -1300,22 +1296,17 @@ button:active {
 
 @media (max-width: 600px) {
 
-    .guide-grid > a.toolpick-feature-card {
-        min-height: 165px !important;
-        padding: 22px 18px !important;
-        gap: 8px !important;
-    }
+  .guide-grid > .toolpick-feature-card {
+    min-height: 175px;
+    padding: 22px 16px;
+  }
 
-    .toolpick-feature-title {
-        font-size: 19px !important;
-    }
+  .toolpick-feature-card .toolpick-feature-title {
+    font-size: 18px;
+  }
 
-    .toolpick-feature-desc {
-        font-size: 12px !important;
-    }
+  .toolpick-feature-card .toolpick-feature-desc {
+    font-size: 12px;
+  }
 
-    .toolpick-feature-button {
-        font-size: 12px !important;
-        padding: 9px 15px;
-    }
 }
