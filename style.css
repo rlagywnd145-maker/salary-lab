@@ -1195,3 +1195,84 @@ button:active {
     font-size: 13px;
   }
 }
+/* =========================
+   월급·세금 가이드 - 툴픽 카드
+========================= */
+
+.toolpick-guide-card {
+  grid-column: span 2;
+  min-height: 90px;
+  padding: 18px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+
+  background: linear-gradient(135deg, #111 0%, #333 100%);
+  color: #fff !important;
+
+  border: none;
+  border-radius: 14px;
+
+  text-decoration: none;
+  box-sizing: border-box;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.toolpick-guide-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.toolpick-guide-icon {
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
+.toolpick-guide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+}
+
+.toolpick-guide-text strong {
+  font-size: 17px;
+  color: #fff;
+}
+
+.toolpick-guide-text small {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+}
+
+.toolpick-guide-arrow {
+  margin-left: auto;
+  font-size: 21px;
+  color: #fff;
+}
+
+/* 모바일 */
+@media (max-width: 700px) {
+
+  .toolpick-guide-card {
+    grid-column: span 1;
+    min-height: 85px;
+    padding: 16px 18px;
+  }
+
+  .toolpick-guide-text strong {
+    font-size: 15px;
+  }
+
+  .toolpick-guide-text small {
+    font-size: 11px;
+  }
+
+}
