@@ -642,7 +642,7 @@ button:active {
 
     font-size: 13px;
   }
-
+ㄴ
 
   input,
   select {
@@ -686,7 +686,7 @@ button:active {
   .deduction-detail {
     padding:
       15px;
-  }
+  }ㄴ
 
 
   .salary-summary p,
@@ -1096,29 +1096,102 @@ button:active {
     font-size: 14px;
   }
 }
-<!-- 툴픽 추천 카드 -->
-<a href="https://toolpickkr.blogspot.com/"
-   target="_blank"
-   rel="noopener"
-   class="toolpick-link-card">
 
-  <div class="toolpick-card-icon">🧰</div>
+/* =========================
+   툴픽 추천 카드
+========================= */
 
-  <div class="toolpick-card-content">
-    <span class="toolpick-card-badge">무료 온라인 도구</span>
+.toolpick-link-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 22px 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    <strong>
-      업무하다 필요한 무료 도구, 여기 다 있어요
-    </strong>
+.toolpick-link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.13);
+}
 
-    <p>
-      이미지 용량 줄이기 · QR 코드 생성 · 비밀번호 생성 등
-      설치 없이 바로 사용할 수 있어요.
-    </p>
+.toolpick-card-icon {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  border-radius: 16px;
+  font-size: 28px;
+}
 
-    <span class="toolpick-card-button">
-      툴픽 무료로 이용하기 →
-    </span>
-  </div>
+.toolpick-card-content {
+  flex: 1;
+}
 
-</a>
+.toolpick-card-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 8px;
+  background: #eef6ff;
+  color: #1683ff;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.toolpick-card-content strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 18px;
+  color: #111;
+}
+
+.toolpick-card-content p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.toolpick-card-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 9px 14px;
+  background: #111;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .toolpick-link-card {
+    padding: 18px;
+    gap: 14px;
+    margin: 24px 15px;
+  }
+
+  .toolpick-card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 23px;
+  }
+
+  .toolpick-card-content strong {
+    font-size: 16px;
+  }
+
+  .toolpick-card-content p {
+    font-size: 13px;
+  }
+}
