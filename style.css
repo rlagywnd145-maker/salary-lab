@@ -1317,3 +1317,54 @@ button:active {
     text-align: center;
   }
 }
+/* ===== 툴픽 메인 추천 카드 최종 ===== */
+
+.guide-grid > a.toolpick-feature-card {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    min-height: 125px !important;
+
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px 30px !important;
+
+    background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%) !important;
+    border: 2px solid #dbeafe !important;
+    border-radius: 20px !important;
+
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    text-align: center;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07) !important;
+}
+
+.guide-grid > a.toolpick-feature-card::after {
+    content: "이미지 압축 · QR코드 · 비밀번호 생성 등 무료 도구 바로 사용하기 →";
+    display: block;
+    margin-top: 10px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.guide-grid > a.toolpick-feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.11) !important;
+}
+
+@media (max-width: 600px) {
+    .guide-grid > a.toolpick-feature-card {
+        min-height: 110px !important;
+        padding: 20px !important;
+        font-size: 17px !important;
+    }
+
+    .guide-grid > a.toolpick-feature-card::after {
+        font-size: 12px;
+    }
+}
