@@ -1368,3 +1368,39 @@ button:active {
         font-size: 12px;
     }
 }
+.toolpick-feature-card {
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.toolpick-feature-badge {
+    padding: 5px 11px;
+    background: #eaf3ff;
+    color: #1677ff;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.toolpick-feature-title {
+    font-size: 21px;
+    font-weight: 800;
+    color: #111;
+}
+
+.toolpick-feature-desc {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.6;
+}
+
+.toolpick-feature-button {
+    margin-top: 5px;
+    padding: 9px 17px;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
