@@ -1196,211 +1196,126 @@ button:active {
   }
 }
 /* =========================
-   월급·세금 가이드 - 툴픽 카드
+   월급·세금 가이드 - 툴픽 메인 추천 카드
 ========================= */
-
-.toolpick-guide-card {
-  grid-column: span 2;
-  min-height: 90px;
-  padding: 18px 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-
-  background: linear-gradient(135deg, #111 0%, #333 100%);
-  color: #fff !important;
-
-  border: none;
-  border-radius: 14px;
-
-  text-decoration: none;
-  box-sizing: border-box;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.toolpick-guide-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
-}
-
-.toolpick-guide-icon {
-  font-size: 30px;
-  flex-shrink: 0;
-}
-
-.toolpick-guide-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  text-align: left;
-}
-
-.toolpick-guide-text strong {
-  font-size: 17px;
-  color: #fff;
-}
-
-.toolpick-guide-text small {
-  font-size: 12px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.75);
-}
-
-.toolpick-guide-arrow {
-  margin-left: auto;
-  font-size: 21px;
-  color: #fff;
-}
-
-/* 모바일 */
-@media (max-width: 700px) {
-
-  .toolpick-guide-card {
-    grid-column: span 1;
-    min-height: 85px;
-    padding: 16px 18px;
-  }
-
-  .toolpick-guide-text strong {
-    font-size: 15px;
-  }
-
-  .toolpick-guide-text small {
-    font-size: 11px;
-  }
-
-}
-/* =========================
-   툴픽 추천 대형 카드
-========================= */
-
-.guide-grid .toolpick-feature-card {
-  grid-column: 1 / -1;
-  min-height: 130px;
-  padding: 26px 30px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 20px;
-  font-weight: 800;
-
-  background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%);
-  border: 2px solid #dbeafe;
-  border-radius: 20px;
-
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
-
-  color: #111;
-  text-decoration: none;
-
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.guide-grid .toolpick-feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
-}
-
-@media (max-width: 600px) {
-  .guide-grid .toolpick-feature-card {
-    min-height: 100px;
-    padding: 20px;
-    font-size: 17px;
-    text-align: center;
-  }
-}
-/* ===== 툴픽 메인 추천 카드 최종 ===== */
 
 .guide-grid > a.toolpick-feature-card {
     grid-column: 1 / -1 !important;
     width: 100% !important;
-    min-height: 125px !important;
+    min-height: 180px !important;
+    box-sizing: border-box;
 
     display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
 
-    padding: 25px 30px !important;
+    padding: 28px 30px !important;
 
-    background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f8ff 100%) !important;
     border: 2px solid #dbeafe !important;
     border-radius: 20px !important;
 
-    font-size: 20px !important;
-    font-weight: 800 !important;
-    text-align: center;
+    text-align: center !important;
+    text-decoration: none !important;
+    color: #111 !important;
 
     box-shadow: 0 8px 24px rgba(0,0,0,0.07) !important;
-}
 
-.guide-grid > a.toolpick-feature-card::after {
-    content: "이미지 압축 · QR코드 · 비밀번호 생성 등 무료 도구 바로 사용하기 →";
-    display: block;
-    margin-top: 10px;
-
-    font-size: 14px;
-    font-weight: 500;
-    color: #666;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .guide-grid > a.toolpick-feature-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.11) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,0.12) !important;
 }
 
-@media (max-width: 600px) {
-    .guide-grid > a.toolpick-feature-card {
-        min-height: 110px !important;
-        padding: 20px !important;
-        font-size: 17px !important;
-    }
 
-    .guide-grid > a.toolpick-feature-card::after {
-        font-size: 12px;
-    }
-}
-.toolpick-feature-card {
-    flex-direction: column !important;
-    gap: 8px !important;
-}
+/* 상단 작은 문구 */
 
 .toolpick-feature-badge {
-    padding: 5px 11px;
+    display: inline-block;
+    padding: 6px 12px;
+
     background: #eaf3ff;
-    color: #1677ff;
+    color: #1677ff !important;
+
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
+
+    font-size: 12px !important;
+    font-weight: 700 !important;
 }
+
+
+/* 메인 제목 */
 
 .toolpick-feature-title {
-    font-size: 21px;
-    font-weight: 800;
-    color: #111;
+    display: block;
+
+    font-size: 23px !important;
+    font-weight: 800 !important;
+    color: #111 !important;
+
+    line-height: 1.4;
 }
 
+
+/* 설명 */
+
 .toolpick-feature-desc {
-    font-size: 14px;
-    font-weight: 500;
-    color: #666;
+    display: block;
+
+    max-width: 520px;
+
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #666 !important;
+
     line-height: 1.6;
 }
 
+
+/* 버튼 */
+
 .toolpick-feature-button {
-    margin-top: 5px;
-    padding: 9px 17px;
-    background: #111;
-    color: white;
+    display: inline-block;
+
+    margin-top: 4px;
+    padding: 10px 18px;
+
+    background: #111 !important;
+    color: #fff !important;
+
     border-radius: 10px;
-    font-size: 13px;
-    font-weight: 700;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+
+/* 모바일 */
+
+@media (max-width: 600px) {
+
+    .guide-grid > a.toolpick-feature-card {
+        min-height: 165px !important;
+        padding: 22px 18px !important;
+        gap: 8px !important;
+    }
+
+    .toolpick-feature-title {
+        font-size: 19px !important;
+    }
+
+    .toolpick-feature-desc {
+        font-size: 12px !important;
+    }
+
+    .toolpick-feature-button {
+        font-size: 12px !important;
+        padding: 9px 15px;
+    }
 }
